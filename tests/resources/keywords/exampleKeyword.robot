@@ -11,6 +11,15 @@ Se connecter à l'URL sur Chrome
     Open Browser    url=${URL}    browser=chrome
     Maximize Browser Window
 
+Se connecter à l'URL sur Chrome en mode headless
+    ${HEADLESS}=    Set Variable    --headless
+    ${OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    
+    Call Method    ${OPTIONS}    add_argument    ${HEADLESS}
+
+    Open Browser    url=${URL}    browser=chrome    options=${OPTIONS}
+    Maximize Browser Window
+
 Accepter les cookies Google
     Wait Until Element Is Visible    locator=xpath=//button[@id='L2AGLb']    timeout=5s
     Click Button    locator=xpath=//button[@id='L2AGLb']

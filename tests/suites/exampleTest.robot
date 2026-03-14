@@ -5,7 +5,8 @@ Resource    ${EXECDIR}/tests/resources/keywords/exampleKeyword.robot
 *** Test Cases ***
 
 Effectuer une recherche
-    Se connecter à l'URL sur Chrome
+    [Tags]    smoke
+    Se connecter à l'URL sur Chrome en mode headless
     Accepter les cookies Google
     Saisir du texte inversé dans la barre de recherche    TEXTE=ABCDEF
     Capture Page Screenshot    filename=Page_Google.png
