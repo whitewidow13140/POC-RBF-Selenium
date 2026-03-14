@@ -13,10 +13,15 @@ Se connecter à l'URL sur Chrome
 
 Se connecter à l'URL sur Chrome en mode headless
     ${HEADLESS}=    Set Variable    --headless
+    ${NO_SANDBOX}=    Set Variable    --no-sandbox
+    ${SHM_USAGE}=    Set Variable    --disable-dev-shm-usage
+
     ${OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
     
     Call Method    ${OPTIONS}    add_argument    ${HEADLESS}
-
+    Call Method    ${OPTIONS}    add_argument    ${NO_SANDBOX}
+    Call Method    ${OPTIONS}    add_argument    ${SHM_USAGE}
+    
     Open Browser    url=${URL}    browser=chrome    options=${OPTIONS}
     Maximize Browser Window
 
