@@ -21,16 +21,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Chromium
+      - name: Install Google Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
+          sudo apt-get install -y wget gnupg
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
-      - name: Check chromium path
+      - name: Check chrome
         run: |
-          which chromium
-          which chromium-browser
-          chromium --version || true
+          which google-chrome
+          google-chrome --version
 
       - name: Install Python dependencies
         run: |
